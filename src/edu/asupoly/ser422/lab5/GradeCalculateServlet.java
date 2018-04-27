@@ -28,8 +28,8 @@ public class GradeCalculateServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		Map<String, Double> result = new HashMap<>();
-		double grade;
+		Map<String, String> result = new HashMap<>();
+		Double grade;
 		String year = req.getParameter("year");
 		String subject = req.getParameter("subject");
 
@@ -49,7 +49,7 @@ public class GradeCalculateServlet extends HttpServlet {
 				res.sendError(500, "Server Exception occured");
 				return;
 			}
-			result.put("grade", grade);
+			result.put("grade", grade.toString());
 			res.setContentType("application/json");
 			PrintWriter out = res.getWriter();
 			out.println(new ObjectMapper().writeValueAsString(result));
